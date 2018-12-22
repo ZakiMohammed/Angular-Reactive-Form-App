@@ -8,4 +8,6 @@ export class Customer {
     email: string = '';
     image: any;
     job: string;
+    password: string = '';
+    confirmPassword: string = '';
 }

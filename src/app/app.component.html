@@ -13,10 +13,22 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/template">Template</a>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Reactive</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" routerLink="/react/basic">Basic</a>
+          <a class="dropdown-item" routerLink="/react/spg">SPG</a>
+          <a class="dropdown-item" routerLink="/react/builder">Builder</a>
+          <a class="dropdown-item" routerLink="/react/valid">Validation</a>
+          <a class="dropdown-item" routerLink="/react/valid-dynamic">Validation (Dynamic)</a>
+          <a class="dropdown-item" routerLink="/react/valid-custom">Validation (Custom)</a>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>
 
-<div class="container">
+<div class="container mb-5">
   <router-outlet class="p-5"></router-outlet>
 </div>
