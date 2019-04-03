@@ -13,6 +13,7 @@ import { ReactBuilderComponent } from './components/react/react-builder/react-bu
 import { ReactValidComponent } from './components/react/react-valid/react-valid.component';
 import { ReactValidDynamicComponent } from './components/react/react-valid-dynamic/react-valid-dynamic.component';
 import { ReactValidCustomComponent } from './components/react/react-valid-custom/react-valid-custom.component';
+import { ReactCrossComponent } from './components/react/react-cross/react-cross.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ReactValidCustomComponent } from './components/react/react-valid-custom
     ReactBuilderComponent,
     ReactValidComponent,
     ReactValidDynamicComponent,
-    ReactValidCustomComponent,    
+    ReactValidCustomComponent,
+    ReactCrossComponent,    
   ],
   imports: [
     BrowserModule,   
@@ -42,6 +44,7 @@ import { ReactValidCustomComponent } from './components/react/react-valid-custom
       { path: "react/valid", component: ReactValidComponent },
       { path: "react/valid-dynamic", component: ReactValidDynamicComponent },
       { path: "react/valid-custom", component: ReactValidCustomComponent },
+      { path: "react/valid-cross", component: ReactCrossComponent },
       { path: "**", component: HomeComponent }
     ])
   ],

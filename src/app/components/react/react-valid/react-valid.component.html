@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-        <h1>Reactive Driven (Form Validation)</h1>
+        <h1>Reactive Driven <small>(Form Validation)</small></h1>
         <p>
           This is a reactive form with reactive level control validations.<br>          
         </p>        
@@ -109,20 +109,14 @@
           </div>
   
           <div class="form-group">
-            <label class="form-check-label">
-                <input type="radio"
-                      class="form-check-input"
-                      name="job"
-                      value="Student"                      
-                      formControlName="job"> Student
-            </label>
-            <label class="form-check-label">
-                <input type="radio"
-                  class="form-check-input"
-                  name="job"
-                  value="Employee"
-                  formControlName="job"> Employee
-            </label>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="jobStudent" name="job" class="custom-control-input" value="Student" formControlName="job" checked="">
+              <label class="custom-control-label" for="jobStudent">Student</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="jobEmployee" name="job" class="custom-control-input" value="Employee" formControlName="job" checked="">
+              <label class="custom-control-label" for="jobEmployee">Employee</label>
+            </div>
           </div>
   
           <div class="form-group">

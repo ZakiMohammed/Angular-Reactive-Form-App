@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col">
-        <h1>Reactive Driven (Form Validation Custom)</h1>
+        <h1>Reactive Driven <small>(Form Validation Custom)</small></h1>
         <p>
-          This is a reactive form with reactive level custom control validations.<br>          
+          This is a reactive form with reactive level custom validations.<br>          
         </p>        
         <hr>
     </div>
@@ -68,22 +68,16 @@
   
           <div class="form-group">
             Send Notification: 
-            <label class="form-check-label">
-                <input type="radio"
-                      class="form-check-input"
-                      name="notify"
-                      value="Email"                      
-                      formControlName="notify"
-                      (click)="setNotification('email')"> Email
-            </label>
-            <label class="form-check-label">
-                <input type="radio"
-                  class="form-check-input"
-                  name="notify"
-                  value="Text"
-                  formControlName="notify"
-                  (click)="setNotification('text')"> Text
-            </label>
+            <div class="form-group">
+              <div class="custom-control custom-radio">
+                <input type="radio" id="notifyEmail" name="notify" class="custom-control-input" value="Email" formControlName="notify" checked="" (click)="setNotification('email')">
+                <label class="custom-control-label" for="notifyEmail">Email</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="notifyText" name="notify" class="custom-control-input" value="Text" formControlName="notify" checked="" (click)="setNotification('text')">
+                <label class="custom-control-label" for="notifyText">Text</label>
+              </div>
+            </div>
           </div>
   
           <div class="form-group">
@@ -112,6 +106,19 @@
                 <span *ngIf="fc.get('email').errors?.email">Email ID is invalid</span>
               </span>
           </div>
+
+          <div class="form-group">
+              <input type="text"
+                    placeholder="Pincode"
+                    class="form-control"
+                    name="pinCode" 
+                    formControlName="pinCode"                    
+                    [ngClass]="{ 'is-invalid': (fc.get('pinCode').touched || fc.get('pinCode').dirty) && !fc.get('pinCode').valid }">
+              <span class="invalid-feedback">
+                <span *ngIf="fc.get('pinCode').errors?.required">Pincode is required</span>
+                <span *ngIf="fc.get('pinCode').errors?.pincode">Pincode is invalid</span>
+              </span>
+          </div>
           
           <div class="form-group">
               <input type="file" 
@@ -128,20 +135,14 @@
           </div>
   
           <div class="form-group">
-            <label class="form-check-label">
-                <input type="radio"
-                      class="form-check-input"
-                      name="job"
-                      value="Student"                      
-                      formControlName="job"> Student
-            </label>
-            <label class="form-check-label">
-                <input type="radio"
-                  class="form-check-input"
-                  name="job"
-                  value="Employee"
-                  formControlName="job"> Employee
-            </label>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="jobStudent" name="job" class="custom-control-input" value="Student" formControlName="job" checked="">
+              <label class="custom-control-label" for="jobStudent">Student</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="jobEmployee" name="job" class="custom-control-input" value="Employee" formControlName="job" checked="">
+              <label class="custom-control-label" for="jobEmployee">Employee</label>
+            </div>
           </div>
   
           <div class="form-group">

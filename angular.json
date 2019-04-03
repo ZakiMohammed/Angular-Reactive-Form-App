@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootswatch/dist/sketchy/bootstrap.min.css",
+              "./node_modules/bootswatch/dist/litera/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": [

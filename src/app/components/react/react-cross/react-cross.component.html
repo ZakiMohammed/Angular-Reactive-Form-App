@@ -1,7 +1,9 @@
 <div class="row">
     <div class="col">
-        <h1>Reactive Driven <small>(set, get & patch)</small></h1>
-        <p>This is a reactive form with template level control validations and set and patch value methods.</p>
+        <h1>Reactive Driven <small>(Cross Field Validation)</small></h1>
+        <p>
+          This is a reactive form with reactive level cross control validations with nested form groups.<br>          
+        </p>        
         <hr>
     </div>
   </div>
@@ -10,22 +12,19 @@
       <div class="col-sm-6">
         <form novalidate
               (ngSubmit)="onSubmit()"              
-              [formGroup]="fc"
-              [compare]="['password', 'confirmPassword']">
+              [formGroup]="fc">
   
           <div class="form-group">
               <input type="text"
                     placeholder="First Name"
                     class="form-control"
-                    name="firstName"
-                    required
-                    minlength="3"
-                    maxlength="30"                    
+                    name="firstName"                  
                     formControlName="firstName"                    
                     [ngClass]="{ 'is-invalid': (fc.get('firstName').touched || fc.get('firstName').dirty) && !fc.get('firstName').valid }">
               <span class="invalid-feedback">
                 <span *ngIf="fc.get('firstName').errors?.required">First name is required</span>
                 <span *ngIf="fc.get('firstName').errors?.minlength">At least 3 characters are required</span>
+                <span *ngIf="fc.get('firstName').errors?.maxlength">At max 30 characters are allowed</span>
               </span>
           </div>
   
@@ -34,21 +33,18 @@
                     placeholder="Last Name"
                     class="form-control"
                     name="lastName"
-                    required
-                    minlength="3"
-                    maxlength="30"                    
                     formControlName="lastName"
                     [ngClass]="{ 'is-invalid': (fc.get('lastName').touched || fc.get('lastName').dirty) && !fc.get('lastName').valid }">
               <span class="invalid-feedback">
                 <span *ngIf="fc.get('lastName').errors?.required">Last name is required</span>
                 <span *ngIf="fc.get('lastName').errors?.minlength">At least 3 characters are required</span>
+                <span *ngIf="fc.get('lastName').errors?.maxlength">At max 30 characters are allowed</span>
               </span>
           </div>
   
           <div class="form-group">
               <select class="form-control"
                     name="gender"
-                    required                    
                     formControlName="gender"                    
                     [ngClass]="{ 'is-invalid': (fc.get('gender').touched || fc.get('gender').dirty) && !fc.get('gender').valid }">
                 <option value="" selected="selected" disabled>Select Gender</option>
@@ -64,7 +60,6 @@
               <input type="date"                  
                     class="form-control"                  
                     name="dob"
-                    required
                     formControlName="dob"                    
                     [ngClass]="{ 'is-invalid': (fc.get('dob').touched || fc.get('dob').dirty) && !fc.get('dob').valid }">
               <span class="invalid-feedback">
@@ -76,15 +71,13 @@
               <input type="text"
                     placeholder="Mobile"
                     class="form-control"
-                    name="mobile"
-                    required
-                    minlength="10"
-                    maxlength="10"
+                    name="mobile" 
                     formControlName="mobile"                    
                     [ngClass]="{ 'is-invalid': (fc.get('mobile').touched || fc.get('mobile').dirty) && !fc.get('mobile').valid }">
               <span class="invalid-feedback">
                 <span *ngIf="fc.get('mobile').errors?.required">Mobile is required</span>
-                <span *ngIf="fc.get('mobile').errors?.minlength">At least 10 digits are required</span>
+                <span *ngIf="fc.get('mobile').errors?.minlength">At least 7 digits are required</span>
+                <span *ngIf="fc.get('lastName').errors?.maxlength">At max 10 digits are allowed</span>
               </span>
           </div>
   
@@ -93,8 +86,6 @@
                     placeholder="Email"
                     class="form-control"
                     name="email"
-                    required
-                    email
                     formControlName="email"                    
                     [ngClass]="{ 'is-invalid': (fc.get('email').touched || fc.get('email').dirty) && !fc.get('email').valid }">
               <span class="invalid-feedback">
@@ -107,7 +98,6 @@
               <input type="file" 
                     class="form-control"
                     name="image"
-                    required
                     accept="image/*" 
                     multiple="multiple"
                     formControlName="image"
@@ -129,48 +119,37 @@
             </div>
           </div>
   
-          <div class="form-group">
-            <input type="password"
-                  placeholder="Password"
-                  class="form-control"
-                  name="password"
-                  required
-                  minlength="6"
-                  maxlength="30"
-                  formControlName="password"                  
-                  [ngClass]="{ 'is-invalid': (fc.get('password').touched || fc.get('password').dirty) && !fc.get('password').valid }">
-            <span class="invalid-feedback">
-              <span *ngIf="fc.get('password').errors?.required">Password is required</span>
-              <span *ngIf="fc.get('password').errors?.minlength">Password should be at least of 6 charachters</span>
-            </span>
-          </div>
-  
-          <div class="form-group">
-            <input type="password"
-                  placeholder="Confirm Password"
-                  class="form-control"
-                  name="confirmPassword"
-                  required                  
-                  formControlName="confirmPassword"
-                  [ngClass]="{ 'is-invalid': (fc.get('confirmPassword').touched || fc.get('confirmPassword').dirty) && !fc.get('confirmPassword').valid }">
-            <span class="invalid-feedback">
-              <span *ngIf="fc.get('confirmPassword').errors?.required">Confirm password is required</span>
-              <span *ngIf="fc.get('confirmPassword').errors?.compare">Confirm password doesn't match with password</span>
-            </span>
+          <div formGroupName="passwordGroup">
+            <div class="form-group">
+              <input type="password"
+                    placeholder="Password"
+                    class="form-control"
+                    name="password"
+                    formControlName="password"                  
+                    [ngClass]="{ 'is-invalid': fc.get('passwordGroup').errors?.passwordCompare || ((fc.get('passwordGroup.password').touched || fc.get('passwordGroup.password').dirty) && !fc.get('passwordGroup.password').valid) }">
+              <span class="invalid-feedback">
+                <span *ngIf="fc.get('passwordGroup.password').errors?.required">Password is required</span>
+                <span *ngIf="fc.get('passwordGroup.password').errors?.minlength">Password should be at least of 6 charachters</span>
+                <span *ngIf="fc.get('passwordGroup.password').errors?.maxlength">Password should be at max of 20 charachters</span>
+              </span>
+            </div>      
+            <div class="form-group">
+              <input type="password"
+                    placeholder="Confirm Password"
+                    class="form-control"
+                    name="confirmPassword"
+                    formControlName="confirmPassword"
+                    [ngClass]="{ 'is-invalid': fc.get('passwordGroup').errors?.passwordCompare || ((fc.get('passwordGroup.confirmPassword').touched || fc.get('passwordGroup.confirmPassword').dirty) && !fc.get('passwordGroup.confirmPassword').valid) }">
+              <span class="invalid-feedback">
+                <span *ngIf="fc.get('passwordGroup.confirmPassword').errors?.required">Confirm password is required</span>
+                <span *ngIf="fc.get('passwordGroup').errors?.passwordCompare">Confirm password doesn't match with password</span>
+              </span>
+            </div>
           </div>
   
           <div>
-              <button type="submit" class="btn btn-primary mr-2">
+              <button type="submit" class="btn btn-primary">
                 Submit
-              </button>
-              <button type="button" class="btn btn-secondary mr-2" (click)="setValue()">
-                Set Value
-              </button>
-              <button type="button" class="btn btn-secondary mr-2" (click)="patchValue()">
-                Patch Value
-              </button>
-              <button type="button" class="btn btn-outline-primary mr-2" (click)="reset()">
-                Reset
               </button>
           </div>
   
