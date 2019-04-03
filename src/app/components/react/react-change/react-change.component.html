@@ -1,0 +1,179 @@
+<div class="row">
+    <div class="col">
+        <h1>Reacting to Changes <small>(Basics)</small></h1>
+        <p>
+          Using valueChanges property of formControl and formGroup.<br>          
+        </p>        
+        <hr>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-6">
+        <form novalidate
+              (ngSubmit)="onSubmit()"              
+              [formGroup]="fc">
+  
+          <div class="form-group">
+              <input type="text"
+                    placeholder="First Name"
+                    class="form-control"
+                    name="firstName"                  
+                    formControlName="firstName"                    
+                    [ngClass]="{ 'is-invalid': (fc.get('firstName').touched || fc.get('firstName').dirty) && !fc.get('firstName').valid }">
+              <span class="invalid-feedback">
+                <span *ngIf="fc.get('firstName').errors?.required">First name is required</span>
+                <span *ngIf="fc.get('firstName').errors?.minlength">At least 3 characters are required</span>
+                <span *ngIf="fc.get('firstName').errors?.maxlength">At max 30 characters are allowed</span>
+              </span>
+          </div>
+  
+          <div class="form-group">
+              <input type="text"
+                    placeholder="Last Name"
+                    class="form-control"
+                    name="lastName"
+                    formControlName="lastName"
+                    [ngClass]="{ 'is-invalid': (fc.get('lastName').touched || fc.get('lastName').dirty) && !fc.get('lastName').valid }">
+              <span class="invalid-feedback">
+                <span *ngIf="fc.get('lastName').errors?.required">Last name is required</span>
+                <span *ngIf="fc.get('lastName').errors?.minlength">At least 3 characters are required</span>
+                <span *ngIf="fc.get('lastName').errors?.maxlength">At max 30 characters are allowed</span>
+              </span>
+          </div>
+  
+          <div class="form-group">
+              <select class="form-control"
+                    name="gender"
+                    formControlName="gender"                    
+                    [ngClass]="{ 'is-invalid': (fc.get('gender').touched || fc.get('gender').dirty) && !fc.get('gender').valid }">
+                <option value="" selected="selected" disabled>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <span class="invalid-feedback">
+                <span *ngIf="fc.get('gender').errors?.required">Gender is required</span>              
+              </span>
+          </div>
+  
+          <div class="form-group">
+              <input type="date"                  
+                    class="form-control"                  
+                    name="dob"
+                    formControlName="dob"                    
+                    [ngClass]="{ 'is-invalid': (fc.get('dob').touched || fc.get('dob').dirty) && !fc.get('dob').valid }">
+              <span class="invalid-feedback">
+                <span *ngIf="fc.get('dob').errors?.required">DOB is required</span>              
+              </span>
+          </div>
+  
+          <div class="form-group">
+            Send Notification: 
+            <div class="form-group">
+              <div class="custom-control custom-radio">
+                <input type="radio" id="notifyEmail" name="notify" class="custom-control-input" value="Email" formControlName="notify" checked="">
+                <label class="custom-control-label" for="notifyEmail">Email</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="notifyText" name="notify" class="custom-control-input" value="Text" formControlName="notify" checked="">
+                <label class="custom-control-label" for="notifyText">Text</label>
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+              <input type="text"
+                    placeholder="Mobile"
+                    class="form-control"
+                    name="mobile" 
+                    formControlName="mobile"                    
+                    [ngClass]="{ 'is-invalid': (fc.get('mobile').touched || fc.get('mobile').dirty) && !fc.get('mobile').valid }">
+              <span class="invalid-feedback">
+                <span *ngIf="fc.get('mobile').errors?.required">Mobile is required</span>
+                <span *ngIf="fc.get('mobile').errors?.minlength">At least 7 digits are required</span>
+                <span *ngIf="fc.get('lastName').errors?.maxlength">At max 10 digits are allowed</span>
+              </span>
+          </div>
+  
+          <div class="form-group">
+              <input type="email"
+                    placeholder="Email"
+                    class="form-control"
+                    name="email"
+                    formControlName="email"                    
+                    [ngClass]="{ 'is-invalid': (fc.get('email').touched || fc.get('email').dirty) && !fc.get('email').valid }">
+              <span class="invalid-feedback">
+                <span *ngIf="fc.get('email').errors?.required">Email is required</span>
+                <span *ngIf="fc.get('email').errors?.email">Email ID is invalid</span>
+              </span>
+          </div>
+          
+          <div class="form-group">
+              <input type="file" 
+                    class="form-control"
+                    name="image"
+                    accept="image/*" 
+                    multiple="multiple"
+                    formControlName="image"
+                    [ngClass]="{ 'is-invalid': (fc.get('image').touched || fc.get('image').dirty) && !fc.get('image').valid }"
+                    (change)="fileHelper.getFile($event.target)">
+              <span class="invalid-feedback">
+                <span *ngIf="fc.get('image').errors?.required">Image is required</span>
+              </span>
+          </div>
+  
+          <div class="form-group">
+            <div class="custom-control custom-radio">
+              <input type="radio" id="jobStudent" name="job" class="custom-control-input" value="Student" formControlName="job" checked="">
+              <label class="custom-control-label" for="jobStudent">Student</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="jobEmployee" name="job" class="custom-control-input" value="Employee" formControlName="job" checked="">
+              <label class="custom-control-label" for="jobEmployee">Employee</label>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <input type="password"
+                  placeholder="Password"
+                  class="form-control"
+                  name="password"
+                  formControlName="password"                  
+                  [ngClass]="{ 'is-invalid': (fc.get('password').touched || fc.get('password').dirty) && !fc.get('password').valid }">
+            <span class="invalid-feedback">
+              <span *ngIf="fc.get('password').errors?.required">Password is required</span>
+              <span *ngIf="fc.get('password').errors?.minlength">Password should be at least of 6 charachters</span>
+              <span *ngIf="fc.get('password').errors?.maxlength">Password should be at max of 20 charachters</span>
+            </span>
+          </div>
+  
+          <div class="form-group">
+            <input type="password"
+                  placeholder="Confirm Password"
+                  class="form-control"
+                  name="confirmPassword"
+                  formControlName="confirmPassword"
+                  [ngClass]="{ 'is-invalid': (fc.get('confirmPassword').touched || fc.get('confirmPassword').dirty) && !fc.get('confirmPassword').valid }">
+            <span class="invalid-feedback">
+              <span *ngIf="fc.get('confirmPassword').errors?.required">Confirm password is required</span>
+              <span *ngIf="fc.get('confirmPassword').errors?.compare">Confirm password doesn't match with password</span>
+            </span>
+          </div>
+  
+          <div>
+              <button type="submit" class="btn btn-primary">
+                Submit
+              </button>
+          </div>
+  
+        </form>
+        
+      </div>
+      <div class="col-sm-6">            
+        <p>
+            Touched: {{ fc.touched }} <br>
+            Dirty: {{ fc.dirty }} <br>
+            Valid: {{ fc.valid }} <br>
+            Value: {{ fc.value | json }}
+        </p>
+      </div>
+    </div>

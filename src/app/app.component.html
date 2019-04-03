@@ -6,25 +6,32 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/">Home</a>
-      </li>
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/template">Template</a>
+        <a class="nav-link" routerLink="/template">Template Forms</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">Reactive</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          aria-expanded="false">Reactive Forms</a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+          
+          <h6 class="dropdown-header">Initial Setup</h6>
           <a class="dropdown-item" routerLink="/react/basic">Basic</a>
           <a class="dropdown-item" routerLink="/react/spg">SPG</a>
           <a class="dropdown-item" routerLink="/react/builder">Builder</a>
+
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" routerLink="/react/valid">Validation</a>
+
+          <h6 class="dropdown-header">Validation</h6>
+          <a class="dropdown-item" routerLink="/react/valid">Basic</a>
           <a class="dropdown-item" routerLink="/react/valid-dynamic">Validation (Dynamic)</a>
           <a class="dropdown-item" routerLink="/react/valid-custom">Validation (Custom)</a>
           <a class="dropdown-item" routerLink="/react/valid-cross">Validation (Cross Field)</a>
+
+          <div class="dropdown-divider"></div>
+
+          <h6 class="dropdown-header">React to Changes</h6>
+          <a class="dropdown-item" routerLink="/react/change">Basic</a>
         </div>
       </li>
     </ul>
