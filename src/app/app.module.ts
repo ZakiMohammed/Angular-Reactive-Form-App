@@ -15,6 +15,7 @@ import { ReactValidDynamicComponent } from './components/react/react-valid-dynam
 import { ReactValidCustomComponent } from './components/react/react-valid-custom/react-valid-custom.component';
 import { ReactCrossComponent } from './components/react/react-cross/react-cross.component';
 import { ReactChangeComponent } from './components/react/react-change/react-change.component';
+import { ReactChangeValidationComponent } from './components/react/react-change-validation/react-change-validation.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ReactChangeComponent } from './components/react/react-change/react-chan
     ReactValidDynamicComponent,
     ReactValidCustomComponent,
     ReactCrossComponent,
-    ReactChangeComponent    
+    ReactChangeComponent,
+    ReactChangeValidationComponent    
   ],
   imports: [
     BrowserModule,   
@@ -48,6 +50,7 @@ import { ReactChangeComponent } from './components/react/react-change/react-chan
       { path: "react/valid-custom", component: ReactValidCustomComponent },
       { path: "react/valid-cross", component: ReactCrossComponent },
       { path: "react/change", component: ReactChangeComponent },
+      { path: "react/change-validate", component: ReactChangeValidationComponent },
       { path: "**", component: HomeComponent }
     ])
   ],
