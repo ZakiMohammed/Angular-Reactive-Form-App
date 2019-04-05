@@ -184,11 +184,11 @@
       
     </div>
     <div class="col-sm-6">            
-      <p>
-          Touched: {{ templateForm.touched }} <br>
-          Dirty: {{ templateForm.dirty }} <br>
-          Valid: {{ templateForm.valid }} <br>
-          Value: {{ templateForm.value | json }}
-      </p>
+      <div class="card mb-2">          
+        <div class="card-body">            
+          <pre>{{ { 'touched': templateForm.touched, 'dirty': templateForm.dirty, 'valid': templateForm.valid } | json }}</pre>
+          <pre>{{ templateForm.value | json }}</pre>
+        </div>
+      </div>
     </div>
   </div>

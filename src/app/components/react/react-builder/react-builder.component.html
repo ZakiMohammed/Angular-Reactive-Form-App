@@ -172,11 +172,11 @@
         
       </div>
       <div class="col-sm-6">            
-        <p>
-            Touched: {{ fc.touched }} <br>
-            Dirty: {{ fc.dirty }} <br>
-            Valid: {{ fc.valid }} <br>
-            Value: {{ fc.value | json }}
-        </p>
+        <div class="card mb-2">          
+          <div class="card-body">            
+            <pre>{{ { 'touched': fc.touched, 'dirty': fc.dirty, 'valid': fc.valid } | json }}</pre>
+            <pre>{{ fc.value | json }}</pre>
+          </div>
+        </div>
       </div>
     </div>
